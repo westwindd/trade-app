@@ -27,29 +27,24 @@ export class MovingAverageStrategy extends StrategyBase {
     }
 
     public async execute(user: User): Promise<Trade | null> {
-        // Fetch historical prices for the symbol
         const shortTermMA = await this.calculateMovingAverage(this.symbol, this.shortTermPeriod);
         const longTermMA = await this.calculateMovingAverage(this.symbol, this.longTermPeriod);
 
         if (shortTermMA > longTermMA) {
-            // Buy signal
             const trade = await this.tradeService.executeTrade(user, this.symbol, 10, 'BUY');
             this.logTrade(trade);
             return trade;
         } else if (shortTermMA < longTermMA) {
-            // Sell signal
             const trade = await this.tradeService.executeTrade(user, this.symbol, 10, 'SELL');
             this.logTrade(trade);
             return trade;
         } else {
-            // No action
             return null;
         }
     }
 
     private async calculateMovingAverage(symbol: string, period: number): Promise<number> {
-        // Implement logic to fetch historical prices and calculate moving average
-        // For demonstration, we'll use mock data
+   
         const prices = await this.marketService.getHistoricalPrices(symbol, period);
         const sum = prices.reduce((acc, price) => acc + price, 0);
         return sum / prices.length;

@@ -13,7 +13,6 @@ export class TradeController {
         this.userService = userService || new UserService();
     }
 
-    // Execute a trade (buy or sell)
     public async executeTrade(req: Request, res: Response): Promise<void> {
         const userId = req.user.id;
         const { symbol, quantity, tradeType } = req.body;
@@ -37,7 +36,6 @@ export class TradeController {
         }
     }
 
-    // Get trade history for the user
     public async getTradeHistory(req: Request, res: Response): Promise<void> {
         const userId = req.user.id;
 
@@ -49,7 +47,6 @@ export class TradeController {
         }
     }
 
-    // Get current portfolio
     public async getPortfolio(req: Request, res: Response): Promise<void> {
         const userId = req.user.id;
 

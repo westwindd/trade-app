@@ -22,7 +22,6 @@ export class TradeService {
         this.userRepository = userRepository || new UserRepository();
     }
 
-    // Execute a trade
     public async executeTrade(
         user: User,
         symbol: string,
@@ -60,7 +59,6 @@ export class TradeService {
         return trade;
     }
 
-    // Get trade history for a user
     public async getTradeHistory(userId: string): Promise<Trade[]> {
         return this.tradeRepository.getTradesByUserId(userId);
     }

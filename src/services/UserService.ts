@@ -15,7 +15,6 @@ export class UserService {
         this.jwtSecret = process.env.JWT_SECRET || 'YOUR_SECRET_KEY';
     }
 
-    // Register a new user
     public async registerUser(name: string, email: string, password: string): Promise<User> {
         const existingUser = await this.userRepository.getUserByEmail(email);
         if (existingUser) {
@@ -28,7 +27,7 @@ export class UserService {
             name,
             email,
             hashedPassword,
-            0, // Initial balance
+            0, 
             new Portfolio()
         );
 
@@ -36,7 +35,6 @@ export class UserService {
         return newUser;
     }
 
-    // Authenticate user and return JWT token
     public async authenticateUser(email: string, password: string): Promise<string> {
         const user = await this.userRepository.getUserByEmail(email);
         if (!user) {
@@ -52,7 +50,6 @@ export class UserService {
         return token;
     }
 
-    // Get user by ID
     public async getUserById(userId: string): Promise<User> {
         const user = await this.userRepository.getUserById(userId);
         if (!user) {
@@ -61,7 +58,6 @@ export class UserService {
         return user;
     }
 
-    // Add funds to user account
     public async addFunds(userId: string, amount: number): Promise<void> {
         if (amount <= 0) {
             throw new Error('Amount must be greater than zero');
@@ -72,13 +68,11 @@ export class UserService {
         await this.userRepository.updateUser(user);
     }
 
-    // Get user's portfolio
     public async getUserPortfolio(userId: string): Promise<Portfolio> {
         const user = await this.getUserById(userId);
         return user.portfolio;
     }
 
-    // Verify JWT token and return user ID
     public verifyToken(token: string): string {
         try {
             const decoded = jwt.verify(token, this.jwtSecret) as { id: string };
@@ -88,7 +82,6 @@ export class UserService {
         }
     }
 
-    // Generate a unique user ID (simple example)
     private generateUserId(): string {
         return 'user_' + Date.now().toString();
     }

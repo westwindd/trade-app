@@ -6,16 +6,16 @@ import { UserService } from '../services/UserService';
 const userService = new UserService();
 
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization?.split(' ')[1]; // Assuming Bearer token
+    const token = req.headers.authorization?.split(' ')[1];
 
     if (!token) {
         return res.status(401).json({ error: 'Authentication token missing' });
     }
 
     try {
-        const userId = userService.verifyToken(token); // Implement token verification
+        const userId = userService.verifyToken(token);
         const user = await userService.getUserById(userId);
-        req.user = user; // Add user to request object
+        req.user = user;
         next();
     } catch (error) {
         res.status(401).json({ error: 'Invalid authentication token' });

@@ -14,7 +14,6 @@ export class StrategyController {
         this.userService = userService || new UserService();
     }
 
-    // Apply a trading strategy to the user's account
     public async applyStrategy(req: Request, res: Response): Promise<void> {
         const userId = req.user.id;
         const { strategyType, parameters } = req.body;
@@ -40,7 +39,6 @@ export class StrategyController {
         }
     }
 
-    // Get available strategies
     public async getAvailableStrategies(req: Request, res: Response): Promise<void> {
         try {
             const strategies = this.strategyService.getAvailableStrategies();
@@ -50,7 +48,6 @@ export class StrategyController {
         }
     }
 
-    // Create a custom strategy
     public async createCustomStrategy(req: Request, res: Response): Promise<void> {
         const userId = req.user.id;
         const { strategyName, logic } = req.body;

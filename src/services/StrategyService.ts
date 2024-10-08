@@ -39,7 +39,6 @@ export class StrategyService {
         strategyName: string,
         logic: string
     ): Promise<void> {
-        // Save the custom strategy logic to the user's profile
         const user = await this.userRepository.getUserById(userId);
         if (!user) {
             throw new Error('User not found');

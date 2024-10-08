@@ -25,7 +25,6 @@ export class MomentumStrategy extends StrategyBase {
     }
 
     public async execute(user: User): Promise<Trade | null> {
-        // Fetch current and previous prices
         const currentPrice = (await this.marketService.getStockPrice(this.symbol)).price;
         const previousPrice = await this.getPreviousPrice(this.symbol);
 

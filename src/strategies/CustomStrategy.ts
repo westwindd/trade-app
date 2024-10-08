@@ -35,7 +35,6 @@ export class CustomStrategy extends StrategyBase {
     }
 
     private async executeUserLogic(user: User): Promise<Trade | null> {
-        // Securely execute user-provided logic using VM2
         const vm = new VM({
             timeout: 1000,
             sandbox: {

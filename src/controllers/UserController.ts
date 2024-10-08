@@ -7,11 +7,9 @@ export class UserController {
     private userService: UserService;
 
     constructor(userService?: UserService) {
-        // Allow dependency injection for testing or use a new instance
         this.userService = userService || new UserService();
     }
 
-    // Register a new user
     public async register(req: Request, res: Response): Promise<void> {
         const { name, email, password } = req.body;
 
@@ -26,7 +24,6 @@ export class UserController {
         }
     }
 
-    // User login
     public async login(req: Request, res: Response): Promise<void> {
         const { email, password } = req.body;
 
@@ -41,10 +38,8 @@ export class UserController {
         }
     }
 
-    // Get user profile
     public async getProfile(req: Request, res: Response): Promise<void> {
-        const userId = req.user.id; // Assuming authentication middleware sets req.user
-
+        const userId = req.user.id; 
         try {
             const user = await this.userService.getUserById(userId);
             res.status(200).json({
@@ -59,7 +54,6 @@ export class UserController {
         }
     }
 
-    // Add funds to user account
     public async addFunds(req: Request, res: Response): Promise<void> {
         const userId = req.user.id;
         const { amount } = req.body;
