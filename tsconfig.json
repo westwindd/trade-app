@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "ES6",                          /* Specify ECMAScript target version */
+    "module": "commonjs",                     /* Specify module code generation */
+    "outDir": "./dist",                       /* Redirect output structure to the 'dist' directory */
+    "rootDir": "./src",                       /* Specify the root directory of input files */
+    "strict": true,                           /* Enable all strict type-checking options */
+    "moduleResolution": "node",               /* Use Node.js module resolution */
+    "esModuleInterop": true,                  /* Enables emit interoperability between CommonJS and ES Modules */
+    "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file */
+    "skipLibCheck": true,                     /* Skip type checking of declaration files */
+    "sourceMap": true,                        /* Generates corresponding '.map' files */
+    "noImplicitAny": false,                   /* Allow expressions and declarations to have 'any' type */
+    "experimentalDecorators": true,           /* Enable experimental support for decorators */
+    "emitDecoratorMetadata": true             /* Enables experimental support for emitting type metadata */
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
